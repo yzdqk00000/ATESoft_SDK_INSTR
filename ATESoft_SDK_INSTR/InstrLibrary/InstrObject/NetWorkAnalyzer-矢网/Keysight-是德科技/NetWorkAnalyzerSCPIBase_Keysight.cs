@@ -51,6 +51,18 @@ namespace InstrLibrary.InstrObect
             {
                 return string.Format("CALC{0}:FORM {1}");
             }
+
+            /// <summary>
+            /// 打开/关闭MARK点
+            /// </summary>
+            /// <param name="op">ON或OFF</param>
+            /// <param name="cnum">通道号</param>
+            /// <param name="mknum">MARK号</param>
+            /// <returns></returns>
+            public virtual string 开or关Mark点( string op = "ON",int cnum=1, int mknum = 1)
+            {
+                return string.Format("CALC{0}:MARK{1} {2}",cnum, mknum, op);
+            }
         }
 
         /// <summary>
