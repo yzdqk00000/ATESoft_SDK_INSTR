@@ -1,0 +1,8 @@
+E:\[Catalog]_TEST\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\bin\Debug\ATESoft_SDK_INSTR.exe.config
+E:\[Catalog]_TEST\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\bin\Debug\ATESoft_SDK_INSTR.exe
+E:\[Catalog]_TEST\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\bin\Debug\ATESoft_SDK_INSTR.pdb
+E:\[Catalog]_TEST\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.csprojResolveAssemblyReference.cache
+E:\[Catalog]_TEST\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.Properties.Resources.resources
+E:\[Catalog]_TEST\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.csproj.GenerateResource.Cache
+E:\[Catalog]_TEST\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.exe
+E:\[Catalog]_TEST\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.pdb
