@@ -53,7 +53,7 @@ namespace InstrLibrary.InstrObect
             }
 
             /// <summary>
-            /// 打开/关闭MARK点
+            /// 打开/关闭MARK点|CALC{0}:MARK{1} {2}
             /// </summary>
             /// <param name="op">ON或OFF</param>
             /// <param name="cnum">通道号</param>
@@ -62,6 +62,16 @@ namespace InstrLibrary.InstrObect
             public virtual string 开or关Mark点( string op = "ON",int cnum=1, int mknum = 1)
             {
                 return string.Format("CALC{0}:MARK{1} {2}",cnum, mknum, op);
+            }
+
+            /// <summary>
+            /// Returns the names and parameters of existing measurements for the specified channel|CALC{0}:PAR:CAT?
+            /// </summary>
+            /// <param name="cnum">通道号</param>
+            /// <returns></returns>
+            public virtual string 读取测试名称(int cnum = 1)
+            {
+                return string.Format("CALC{0}:PAR:CAT?", cnum);
             }
         }
 
