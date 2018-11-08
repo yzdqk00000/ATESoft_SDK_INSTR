@@ -69,7 +69,7 @@ namespace InstrLibrary.InstrObect
             /// </summary>
             /// <param name="cnum">通道号</param>
             /// <returns></returns>
-            public virtual string 读取测试名称(int cnum = 1)
+            public virtual string 读取所有测试名称Catalog(int cnum = 1)
             {
                 return string.Format("CALC{0}:PAR:CAT?", cnum);
             }
