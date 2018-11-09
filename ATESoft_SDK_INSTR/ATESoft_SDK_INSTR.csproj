@@ -74,8 +74,9 @@
     <Compile Include="InstrLibrary\InstrObject\PowerMeter-功率计\Keysight-是德科技\PowerMeterSCPIBase_Keysight.cs" />
     <Compile Include="InstrLibrary\InstrObject\PowerMeter-功率计\PowerMeterBase.cs" />
     <Compile Include="InstrLibrary\InstrObject\PowerMeter-功率计\RS-罗德与施瓦茨\PowerMeterSCPIBase_RS.cs" />
+    <Compile Include="InstrLibrary\InstrObject\PowerSupply-程控电源\GW-固纬\PowerSupplySCPIBase_GW_PPT.cs" />
     <Compile Include="InstrLibrary\InstrObject\PowerSupply-程控电源\PowerSupplyBase.cs" />
-    <Compile Include="InstrLibrary\InstrObject\PowerSupply-程控电源\PSW-固纬PSW系列\PowerMeterSCPIBase_PSW.cs" />
+    <Compile Include="InstrLibrary\InstrObject\PowerSupply-程控电源\GW-固纬\PowerSupplySCPIBase_GW_PSW.cs" />
     <Compile Include="InstrLibrary\InstrObject\SignalAnalyzer-信号分析仪\CETC41-41所\SignalAnalyzerSCPIBase_CETC41.cs" />
     <Compile Include="InstrLibrary\InstrObject\SignalAnalyzer-信号分析仪\Keysight-是德科技\SignalAnalyzerSCPIBase_Keysight.cs" />
     <Compile Include="InstrLibrary\InstrObject\SignalAnalyzer-信号分析仪\RS-罗德与施瓦茨\SignalAnalyzerSCPIBase_RS.cs" />
