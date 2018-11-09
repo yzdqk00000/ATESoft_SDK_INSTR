@@ -28,7 +28,6 @@ namespace TestLibrary
         public string Start()
         {
             _Net.VisaOpen();
-
             //可读性强的流程代码
             _Net.VisaWrite(_NetSCPI.IDN_);
             _Net.VisaWrite(_NetSCPI.RST);

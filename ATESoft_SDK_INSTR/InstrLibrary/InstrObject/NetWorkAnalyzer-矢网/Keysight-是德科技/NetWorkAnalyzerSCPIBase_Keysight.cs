@@ -12,6 +12,8 @@ namespace InstrLibrary.InstrObect
     {
         public CALCulate_System CALC_SYSTEM = new CALCulate_System();
         public MEMMory_System MEMM_SYSTEM = new MEMMory_System();
+        public OUTPut_System OUTP_SYSTEM = new OUTPut_System();
+        public SENSse_System SENS_SYSTEM = new SENSse_System();
 
         /// <summary>
         /// CALC指令系统
@@ -73,6 +75,33 @@ namespace InstrLibrary.InstrObect
             {
                 return string.Format("CALC{0}:PAR:CAT?", cnum);
             }
+
+            /// <summary>
+            /// 选择测试根据名称|CALC{0}:PAR:SEL '{1}'
+            /// </summary>
+            /// <param name="cnum">通道号</param>
+            /// <param name="name">测试名称</param>
+            /// <returns></returns>
+            public virtual string 选择测试窗口根据名称(int cnum=1,string name="CH1_S11_1")
+            {
+                return string.Format("CALC{0}:PAR:SEL '{1}'", cnum,name);
+            }
+
+            /// <summary>
+            /// 读取曲线上的点
+            /// </summary>
+            /// <param name="cnum">通道号</param>
+            /// <param name="style">类型，常用的是FDATA</param>
+            ///For Measurement data, use FDATA or SDATA
+            ///For Memory data, use FMEM or SMEM.When querying memory, you must first store a trace into memory using CALC:MATH:MEMorize.
+            ///For Normalization Divisor(Receiver Power Cal error term) data, use SDIV
+            ///Use FORMat:DATA to change the data type(<REAL,32>, <REAL,64> or<ASCii,0>).
+            ///Use FORMat:BORDer to change the byte order.Use “NORMal” when transferring a binary block from LabView or Vee.For other programming languages, you may need to "SWAP" the byte order.
+            /// <returns></returns>
+            public virtual string 读取曲线点的数据(int cnum=1,string style="FDATA")
+            {
+                return string.Format("CALC{0}:DATA? {1}",cnum,style);
+            }
         }
 
         /// <summary>
@@ -89,6 +118,48 @@ namespace InstrLibrary.InstrObect
             {
                 return string.Format("MMEM:LOAD '{0}'",path);
                 
+            }
+        }
+
+        /// <summary>
+        /// OUTPUT指令系统
+        /// </summary>
+        public class OUTPut_System
+        {
+            /// <summary>
+            /// 打开关闭源|OUTP {0}
+            /// </summary>
+            /// <param name="state"></param>
+            /// <returns></returns>
+            public virtual string 开or关输出(string state="OFF")
+            {
+                return string.Format("OUTP {0}",state);
+            }
+        }
+
+        /// <summary>
+        /// SENSE指令系统
+        /// </summary>
+        public class SENSse_System
+        {
+            /// <summary>
+            /// 设置起始频率|SENS:FREQ:STAR {0}
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns></returns>
+            public virtual string 设置起始频率(string value)
+            {
+                return string.Format("SENS:FREQ:STAR {0}",value);
+            }
+
+            /// <summary>
+            /// 设置终止频率|SENS:FREQ:STOP {0}
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns></returns>
+            public virtual string 设置终止频率(string value)
+            {
+                return string.Format("SENS:FREQ:STOP {0}", value);
             }
         }
     }

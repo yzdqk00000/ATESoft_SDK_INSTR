@@ -26,8 +26,8 @@ namespace ATESoft_SDK_INSTR
 
             SignalGeneratorSCPIBase_Keysight keysight_scpi = new SignalGeneratorSCPIBase_Keysight();
 
-            Console.WriteLine(keysight_scpi.POWER_SYSTEM.设置功率("50dbm"));
-            Console.WriteLine(keysight_scpi.FREQUENCY_SYSTEM.设置频率("50MHz"));
+            Console.WriteLine(keysight_scpi.SOURCE_SYSTEM.设置功率("50dbm"));
+            Console.WriteLine(keysight_scpi.SOURCE_SYSTEM.设置频率("50MHz"));
 
             //测试业务流程
             //端口驻波测试 port = new 端口驻波测试(n9030B, spe);
