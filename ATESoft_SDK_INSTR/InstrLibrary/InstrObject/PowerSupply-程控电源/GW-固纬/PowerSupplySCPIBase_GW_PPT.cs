@@ -2,11 +2,11 @@
 namespace InstrLibrary.InstrObect
 {
     /// <summary>
-    /// 固纬PSW系列
+    /// 固纬PPT系列
     /// 
     /// 电源-SCPI指令
     /// </summary>
-    public class PowerMeterSCPIBase_PSW : SCPIBase
+    public class PowerSupplySCPIBase_GW_PPT : SCPIBase
     {
         public CALCulate_System CALC_SYSTEM = new CALCulate_System();
         public MEMMory_System MEMM_SYSTEM = new MEMMory_System();
