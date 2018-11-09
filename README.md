@@ -1,3 +1,9 @@
-# ATESoft_SDK_INSTR
-建立分支branch，
-然后再把自己的分支和master进行merge操作
+# ATESoft_SDK_INSTR-仪表控制管理库
+用于记录在实践中通过查询并使用的SCPI指令，核心使用方式是*继承*
+
+##1. Github更新操作指南，
+核心步骤是：
+- 拉下代码后，（本地）从主分支上创建自己的独立分支比如tangliwen
+- （本地）在独立分支进行更新并commit到本地。
+- （本地）切回master并检查是否有更新，接着merge自己的分支，这样就把自己更新的内容合并到主干上了。
+- （远端）最后将master push即可
