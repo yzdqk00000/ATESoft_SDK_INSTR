@@ -153,6 +153,16 @@ namespace InstrLibrary.InstrObect
             }
 
             /// <summary>
+            /// 设置带宽SPAN|SENS:FREQ:SPAN {0}
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns></returns>
+            public virtual string 设置带宽SPAN(string value="50MHz")
+            {
+                return string.Format("SENS:FREQ:SPAN {0}", value);
+            }
+
+            /// <summary>
             /// 设置终止频率|SENS:FREQ:STOP {0}
             /// </summary>
             /// <param name="value"></param>
