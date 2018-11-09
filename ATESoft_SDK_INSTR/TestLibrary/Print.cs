@@ -9,9 +9,9 @@ namespace TestLibrary
 {
     public class Print
     {
-        NXXX_SCPI _SCPI = new NXXX_SCPI();
+        N9030B_SCPI _SCPI = new N9030B_SCPI();
         NetWorkAnalyzerSCPI_Keysight_Complex _SCPI_Complex = new NetWorkAnalyzerSCPI_Keysight_Complex();
-
+        
         public void Start()
         {
             Console.WriteLine(_SCPI.CALC_SYSTEM.设置测试显示格式());
@@ -19,7 +19,6 @@ namespace TestLibrary
             {
                 Console.WriteLine(item);
             }
-          
         }
     }
 }
