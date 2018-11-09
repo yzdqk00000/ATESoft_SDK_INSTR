@@ -6,8 +6,17 @@ E:\[Catalog]_TEST\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INST
 E:\[Catalog]_TEST\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.csproj.GenerateResource.Cache
 E:\[Catalog]_TEST\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.exe
 E:\[Catalog]_TEST\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.pdb
+<<<<<<< HEAD
 E:\gitcode\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.csprojResolveAssemblyReference.cache
 E:\gitcode\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.Properties.Resources.resources
 E:\gitcode\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.csproj.GenerateResource.Cache
 E:\gitcode\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.exe
 E:\gitcode\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.pdb
+=======
+E:\gitcode\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\bin\Debug\ATESoft_SDK_INSTR.exe.config
+E:\gitcode\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.exe
+E:\gitcode\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.pdb
+E:\gitcode\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.csprojResolveAssemblyReference.cache
+E:\gitcode\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.Properties.Resources.resources
+E:\gitcode\ATESoft_SDK_INSTR\ATESoft_SDK_INSTR\obj\Debug\ATESoft_SDK_INSTR.csproj.GenerateResource.Cache
+>>>>>>> wuwenyan

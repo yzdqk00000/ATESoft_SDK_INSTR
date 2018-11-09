@@ -28,6 +28,7 @@ namespace TestLibrary
         public string Start()
         {
             _Net.VisaOpen();
+            _Net.VisaWrite(_NetSCPI.SENS_SYSTEM.设置带宽SPAN());
             //可读性强的流程代码
             _Net.VisaWrite(_NetSCPI.IDN_);
             _Net.VisaWrite(_NetSCPI.RST);
