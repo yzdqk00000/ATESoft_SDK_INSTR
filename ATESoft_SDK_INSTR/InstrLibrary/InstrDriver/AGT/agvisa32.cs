@@ -2,6 +2,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
+
 public sealed class AgVisa32
 {
     public AgVisa32() { }

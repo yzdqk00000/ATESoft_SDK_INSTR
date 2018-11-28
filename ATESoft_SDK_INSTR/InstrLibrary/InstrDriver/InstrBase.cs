@@ -87,10 +87,10 @@ namespace InstrLibrary.InstrDriver
             _ViError = AgVisa32.viPrintf(_Session, command + "\n");
             string res = "";
             AgVisa32.viRead(_Session, out res, 10000);
-            //string[] resa = res.Split(',');
-            //res = resa[0];
-            //dtmp = double.Parse(res);
-            return res;
+            string[] resa = res.Split(',');
+            res = resa[0];
+            double dtmp = double.Parse(res);
+            return dtmp.ToString("f2");
         }
 
         /// <summary>

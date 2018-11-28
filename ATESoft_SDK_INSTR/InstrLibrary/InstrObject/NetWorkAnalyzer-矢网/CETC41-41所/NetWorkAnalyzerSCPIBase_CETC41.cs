@@ -10,6 +10,7 @@ namespace InstrLibrary.InstrObect
     {
         public CALCulate_System CALC_SYSTEM = new CALCulate_System();
         public MEMMory_System MEMM_SYSTEM = new MEMMory_System();
+        public SENSe_System SENS_SYSTEM = new SENSe_System();
 
         /// <summary>
         /// CALC指令系统
@@ -48,6 +49,51 @@ namespace InstrLibrary.InstrObect
             public virtual string 设置测试显示格式(string format="SWR", int cnum = 1)
             {
                 return string.Format("CALC{0}:FORM {1}",cnum,format);
+            }
+
+            /// <summary>
+            /// 选择测试根据名称|CALC{0}:PAR:SEL '{1}'
+            /// </summary>
+            /// <param name="cnum">通道号</param>
+            /// <param name="name">测试名称</param>
+            /// <returns></returns>
+            public virtual string 选择测试窗口根据名称(int cnum = 1, string name = "CH1_S11_1")
+            {
+                return string.Format("CALC{0}:PAR:SEL '{1}'", cnum, name);
+            }
+
+            /// <summary>
+            /// CALC{0}:MARK{1} ON
+            /// </summary>
+            /// <param name="cnum"></param>
+            /// <param name="name"></param>
+            /// <returns></returns>
+            public virtual string 打开MARK点(int cnum = 1, int name = 1)
+            {
+                return string.Format("CALC{0}:MARK{1} ON", cnum, name);
+            }
+        }
+
+        public class SENSe_System
+        {
+            /// <summary>
+            /// SENS:FREQ:STAR {1}MHz
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns></returns>
+            public virtual string 设置起始频率(string value)
+            {
+                return string.Format("SENS:FREQ:STAR {1}MHz", value);
+            }
+
+            /// <summary>
+            /// SENS:FREQ:STOP {1}MHz
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns></returns>
+            public virtual string 设置终止频率(string value)
+            {
+                return string.Format("SENS:FREQ:STOP {1}MHz", value);
             }
         }
 
