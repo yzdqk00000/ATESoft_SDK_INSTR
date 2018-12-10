@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+
 namespace InstrLibrary.InstrDriver
 {
     /// <summary>
@@ -84,9 +86,12 @@ namespace InstrLibrary.InstrDriver
         /// <returns></returns>
         public virtual string VisaRead(string command)
         {
-            _ViError = AgVisa32.viPrintf(_Session, command + "\n");
+            _ViError = AgVisa32.viPrintf(_Session, command +"\r\n");
             string res = "";
-            AgVisa32.viRead(_Session, out res, 10000);
+            Thread.Sleep(100);
+
+            AgVisa32.viRead(_Session, out res, 100);
+
             string[] resa = res.Split(',');
             res = resa[0];
             double dtmp = double.Parse(res);

@@ -8,24 +8,59 @@ namespace InstrLibrary.InstrObect
     /// </summary>
     public class PowerSupplySCPIBase_GW_PSW : SCPIBase
     {
-        public CALCulate_System CALC_SYSTEM = new CALCulate_System();
-        public MEMMory_System MEMM_SYSTEM = new MEMMory_System();
-
-        /// <summary>
-        /// CALC指令系统
-        /// </summary>
-        public class CALCulate_System
+        public MEASure_System MEASURE_SYSTEM = new MEASure_System();
+        public OUTPut_System OUTPUT_SYSTEM = new OUTPut_System();
+        public class MEASure_System
         {
 
+            /// <summary>
+            /// MEAS:CURR?
+            /// </summary>
+            /// <returns></returns>
+            public virtual string 读取电流值()
+            {
+                return string.Format("MEAS:CURR?");
+            }
+
+            /// <summary>
+            /// MEAS:VOLT?
+            /// </summary>
+            /// <returns></returns>
+            public virtual string 读取电压值()
+            {
+                return string.Format("MEAS:VOLT?");
+            }
+
+            /// <summary>
+            /// VOLT
+            /// </summary>
+            /// <returns></returns>
+            public virtual string 设置电压值(double value)
+            {
+                return string.Format("VOLT " + value);
+            }
+
+            /// <summary>
+            /// CURR
+            /// </summary>
+            /// <returns></returns>
+            public virtual string 设置电流值(double value)
+            {
+                return string.Format("CURR " +value);
+            }
         }
-
-        /// <summary>
-        /// MEMM指令系统
-        /// </summary>
-        public class MEMMory_System
+        public class OUTPut_System
         {
+            /// <summary>
+            /// OUTP
+            /// </summary>
+            /// <param name="state"></param>
+            /// <returns></returns>
+            public virtual string 输出开关(int state=1)
+            {
+                return string.Format("OUTP " +state);
+            }
         }
     }
-
-    
+     
 }

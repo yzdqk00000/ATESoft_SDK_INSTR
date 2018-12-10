@@ -10,6 +10,17 @@ namespace InstrLibrary.InstrObect
         {           
             
         }
+
+        public override string VisaRead(string command)
+        {
+            string res = "";
+            _ViError = AgVisa32.viPrintf(_Session, command+ "\n");
+
+            AgVisa32.viRead(_Session, out res, 1000);
+
+            double dtmp = double.Parse(res) * 1000;
+            return dtmp.ToString("f0");
+        }
     }
 
 
