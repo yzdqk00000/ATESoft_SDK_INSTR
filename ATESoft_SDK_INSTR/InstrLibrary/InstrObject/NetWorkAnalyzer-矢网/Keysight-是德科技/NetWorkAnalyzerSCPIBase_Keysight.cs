@@ -119,6 +119,16 @@ namespace InstrLibrary.InstrObect
                 return string.Format("MMEM:LOAD '{0}'",path);
                 
             }
+
+            /// <summary>
+            /// 保存文件
+            /// </summary>
+            /// <param name="path"></param>
+            /// <returns></returns>
+            public virtual string 保存Memory(string path = "MyFile.csa")
+            {
+                return string.Format("MMEM:STOR '{0}'", path);
+            }
         }
 
         /// <summary>
