@@ -10,6 +10,7 @@ namespace InstrLibrary.InstrObect
     {
         public SOURce_System SOURCE_SYSTEM = new SOURce_System();
         public OUTPut_System OUTPUT_SYSTEM = new OUTPut_System();
+        public TRIGger_System TRIGGER_SYSTEM = new TRIGger_System();
 
         /// <summary>
         /// SOURce指令系统
@@ -52,6 +53,45 @@ namespace InstrLibrary.InstrObect
             public virtual string 读取当前功率()
             {
                 return string.Format("SOUR:POWer?");
+            }
+
+            /// <summary>
+            /// 设置频率Offsets SOUR:FREQ:OFFS {0}  
+            /// </summary>
+            /// <param name="value">100MHz</param>
+            /// <returns></returns>
+            public virtual string 设置频率Offsets(string value = "100MHz")
+            {
+                return string.Format("SOUR:FREQ:OFFS {0}", value);
+            }
+
+            /// <summary>
+            /// 设置功率Offsets POW:OFFS {0}  
+            /// </summary>
+            /// <param name="value">0</param>
+            /// <returns></returns>
+            public virtual string 设置功率Offsets(string value = "0")
+            {
+                return string.Format("POW:OFFS {0}", value);
+            }
+
+            /// <summary>
+            /// 设置Pulse内外调制模式Mod SOUR:PULM:SOUR INT|EXT
+            /// </summary>
+            /// <param name="value">INT|EXT</param>
+            /// <returns></returns>
+            public virtual string 设置Pulse内外调制模式Mod(string value = "INT")
+            {
+                return string.Format("SOUR:PULM:SOUR {0}", value);
+            }
+
+            /// <summary>
+            /// 读取Pulse内外调制模式Mod状态 SOUR:PULM:SOUR?
+            /// </summary>
+            /// <returns></returns>
+            public virtual string 读取Pulse内外调制模式Mod状态()
+            {
+                return string.Format("SOUR:PULM:SOUR?");
             }
         }
 
