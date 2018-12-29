@@ -10,7 +10,6 @@ namespace InstrLibrary.InstrObect
     {
         public SOURce_System SOURCE_SYSTEM = new SOURce_System();
         public OUTPut_System OUTPUT_SYSTEM = new OUTPut_System();
-        public TRIGger_System TRIGGER_SYSTEM = new TRIGger_System();
 
         /// <summary>
         /// SOURce指令系统
