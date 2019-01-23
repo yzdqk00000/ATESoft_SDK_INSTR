@@ -90,8 +90,8 @@ public sealed class AgVisa32
         int retVal = viRead(vi, byteResults, maxCount, out retCount);
         //if (retVal >= AgVisa32.VI_SUCCESS)//这里的判断，需要确认。。。。。
         //{
-        ASCIIEncoding encoding = new ASCIIEncoding();
-        asciiResults = encoding.GetString(byteResults, 0, retCount);
+            ASCIIEncoding encoding = new ASCIIEncoding();
+            asciiResults = encoding.GetString(byteResults, 0, retCount);
         //}
         return retVal;
     }

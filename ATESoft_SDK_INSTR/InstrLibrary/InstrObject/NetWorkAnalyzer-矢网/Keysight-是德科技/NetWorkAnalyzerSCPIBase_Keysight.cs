@@ -51,7 +51,7 @@ namespace InstrLibrary.InstrObect
             /// <returns></returns>
             public virtual string 设置测试显示格式(string format="SWR", int cnum = 1)
             {
-                return string.Format("CALC{0}:FORM {1}");
+                return string.Format("CALC{0}:FORM {1}",cnum,format);
             }
 
             /// <summary>

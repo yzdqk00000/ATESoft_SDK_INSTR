@@ -5,19 +5,22 @@
     /// </summary>
     public class SCPIBase
     {
-        public string IDN_ = "*IDN?";
-        public string CLS = "*CLS";
-        public string ESE = "*ESE";
-        public string ESE_ = "*ESE?";
-        public string ESR_ = "*ESR?";
-        public string OPC_ = "*OPC?";
-        public string OPC = "*OPC";
-        public string RST = "*RST";
-        public string SRE = "*SRE";
-        public string SRE_ = "*SRE";
-        public string STB_ = "*STB?";
-        public string TST_ = "*TST";
-        public string WAI = "*WAI";
-        public string TRG = "*TRG";
+        public static class COMMON
+        {
+            public static string IDN_ = "*IDN?";
+            public static string CLS = "*CLS";
+            public static string ESE = "*ESE";
+            public static string ESE_ = "*ESE?";
+            public static string ESR_ = "*ESR?";
+            public static string OPC_ = "*OPC?";
+            public static string OPC = "*OPC";
+            public static string RST = "*RST";
+            public static string SRE = "*SRE";
+            public static string SRE_ = "*SRE";
+            public static string STB_ = "*STB?";
+            public static string TST_ = "*TST";
+            public static string WAI = "*WAI";
+            public static string TRG = "*TRG";
+        }
     }
 }

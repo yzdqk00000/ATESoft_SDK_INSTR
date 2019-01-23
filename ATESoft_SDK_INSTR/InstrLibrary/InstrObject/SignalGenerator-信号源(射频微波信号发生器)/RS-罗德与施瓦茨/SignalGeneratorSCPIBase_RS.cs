@@ -109,6 +109,16 @@ namespace InstrLibrary.InstrObect
             {
                 return string.Format("OUTP {0}", state);
             }
+
+            /// <summary>
+            /// 开or关调制MOD  MOD:STAT {0}
+            /// </summary>
+            /// <param name="state"></param>
+            /// <returns></returns>
+            public virtual string 开or关调制MOD(string state = "OFF")
+            {
+                return string.Format("MOD:STAT {0}", state);
+            }
         }
     }
 

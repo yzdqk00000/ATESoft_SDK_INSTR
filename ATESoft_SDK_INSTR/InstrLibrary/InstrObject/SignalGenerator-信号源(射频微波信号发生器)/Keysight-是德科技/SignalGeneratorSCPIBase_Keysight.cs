@@ -111,6 +111,7 @@ namespace InstrLibrary.InstrObect
             {
                 return string.Format("OUTP {0}",state);
             }
+
         }
     }
 

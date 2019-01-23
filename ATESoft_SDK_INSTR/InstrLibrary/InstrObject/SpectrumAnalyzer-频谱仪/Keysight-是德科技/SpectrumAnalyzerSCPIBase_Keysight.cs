@@ -10,6 +10,8 @@ namespace InstrLibrary.InstrObect
     {
         public CALCulate_System CALC_SYSTEM = new CALCulate_System();
         public SENSe_System SENSE_SYSTEM = new SENSe_System();
+        public DISPlay_System DISPLAY_SYSTEM = new DISPlay_System();
+
         /// <summary>
         /// SENSE指令系统
         /// </summary>
@@ -75,7 +77,22 @@ namespace InstrLibrary.InstrObect
                 return string.Format("SWE:TIME {0}", time);
             }
         }
-
+        /// <summary>
+        /// DISPlay系统
+        /// </summary>
+        public class DISPlay_System
+        {
+            /// <summary>
+            /// 设置参考电平 DISPlay:WINDow{0}:TRACe:Y:RLEVel {0}
+            /// </summary>
+            /// <param name="win"></param>
+            /// <param name="value"></param>
+            /// <returns></returns>
+            public virtual string 设置参考电平(string win = "1",string value="20")
+            {
+                return string.Format("DISPlay:WINDow{0}:TRACe:Y:RLEVel {1}",win,value);
+            }
+        }
         /// <summary>
         /// CALC指令系统
         /// </summary>

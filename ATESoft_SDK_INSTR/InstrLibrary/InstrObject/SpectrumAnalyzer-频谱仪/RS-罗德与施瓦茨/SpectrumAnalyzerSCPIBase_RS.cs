@@ -10,6 +10,7 @@ namespace InstrLibrary.InstrObect
     {
         public CALCulate_System CALC_SYSTEM = new CALCulate_System();
         public SENSe_System SENSE_SYSTEM = new SENSe_System();
+        public DISPlay_System DISPLAY_SYSTEM = new DISPlay_System();
         public SYSTem_System SYSTEM_SYSTEM = new SYSTem_System();
 
         /// <summary>
@@ -35,6 +36,16 @@ namespace InstrLibrary.InstrObect
             public virtual string 设置终止频率stop(string pinlv = "200MHz")
             {
                 return string.Format("FREQ:STOP {0}", pinlv);
+            }
+
+            /// <summary>
+            /// 设置中心频率 FREQ:CENT {0}
+            /// </summary>
+            /// <param name="pinlv"></param>
+            /// <returns></returns>
+            public virtual string 设置中心频率center(string pinlv = "200MHz")
+            {
+                return string.Format("FREQ:CENT {0}", pinlv);
             }
 
             /// <summary>
@@ -89,6 +100,21 @@ namespace InstrLibrary.InstrObect
                 return string.Format("SYST:DISP:UPD 1");
             }
         }
+
+        public class DISPlay_System
+        {
+            /// <summary>
+            /// 设置参考电平 DISPlay:WINDow{0}:TRACe:Y:RLEVel {0}
+            /// </summary>
+            /// <param name="win"></param>
+            /// <param name="value"></param>
+            /// <returns></returns>
+            public virtual string 设置参考电平(string win = "1", string value = "20")
+            {
+                return string.Format("DISPlay:WINDow{0}:TRACe:Y:RLEVel {1}", win, value);
+            }
+        }
+
         /// <summary>
         /// CALC指令系统
         /// </summary>
@@ -134,6 +160,26 @@ namespace InstrLibrary.InstrObect
             public virtual string 设置MARK最大MAX(int mknum = 1)
             {
                 return string.Format("CALC:MARK{0}:MAX", mknum);
+            }
+
+            /// <summary>
+            /// 设置MARK次峰MAX_NEXT
+            /// </summary>
+            /// <param name="mknum"></param>
+            /// <returns></returns>
+            public virtual string 设置MARK次峰MAX_NEXT(int mknum = 1)
+            {
+                return string.Format("CALC:MARK{0}:MAX:NEXT", mknum);
+            }
+
+            /// <summary>
+            /// 读取纵坐标所有数值
+            /// </summary>
+            /// <param name="trace_name"></param>
+            /// <returns></returns>
+            public virtual string 读取所有Y值(string trace_name = "Trace1")
+            {
+                return string.Format("TRAC:DATA? {0}", trace_name);
             }
         }
     }

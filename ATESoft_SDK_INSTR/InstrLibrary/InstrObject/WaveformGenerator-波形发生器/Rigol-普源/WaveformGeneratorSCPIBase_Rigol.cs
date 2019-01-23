@@ -55,6 +55,51 @@ namespace InstrLibrary.InstrObect
             }
 
             /// <summary>
+            /// Pulse延时设置 SOUR{0}:PULS:DELay {1}
+            /// </summary>
+            /// <param name="cnum">通道号</param>
+            /// <param name="value">延时时间 单位ns|s|us等，也可直接传数值默认是s</param>
+            /// <returns></returns>
+            public virtual string Pulse延时设置(int cnum = 1, string value = "0ns")
+            {
+                return string.Format("SOUR{0}:PULS:DELay {1}", cnum, value);
+            }
+
+            /// <summary>
+            /// Pulse周期设置 SOUR{0}:PER {1}
+            /// </summary>
+            /// <param name="cnum">通道号</param>
+            /// <param name="value">延时时间 单位ns|s|us等，也可直接传数值默认是s</param>
+            /// <returns></returns>
+            public virtual string Pulse周期设置(int cnum = 1, string value = "300us")
+            {
+                return string.Format("SOUR{0}:PER {1}", cnum, value);
+            }
+
+            /// <summary>
+            /// Pulse上升沿时间设置 SOUR{0}:PULS:TRAN:LEAD {1}
+            /// </summary>
+            /// <param name="cnum">通道号</param>
+            /// <param name="value">时间</param>
+            /// <returns></returns>
+            public virtual string Pulse上升沿时间设置(int cnum = 1, string value = "4ns")
+            {
+                return string.Format("SOUR{0}:PULS:TRAN:LEAD {1}", cnum, value);
+            }
+
+            /// <summary>
+            /// Pulse下降沿时间设置 SOUR{0}:PULS:TRAN:TRA {1}
+            /// </summary>
+            /// <param name="cnum">通道号</param>
+            /// <param name="value">时间</param>
+            /// <returns></returns>
+            public virtual string Pulse下降沿时间设置(int cnum = 1, string value = "4ns")
+            {
+                return string.Format("SOUR{0}:PULS:TRAN:TRA {1}", cnum, value);
+            }
+
+
+            /// <summary>
             /// Pulse频率_幅度_偏移_延时设置 SOURce{0}:APPL:PULS {1},{2},{3},{4}
             /// </summary>
             /// <param name="cnum">通道号 1</param>
@@ -67,6 +112,31 @@ namespace InstrLibrary.InstrObect
             {
                 return string.Format("SOURce{0}:APPL:PULS {1},{2},{3},{4}", cnum, freq, amp, offset, delay);
             }
+
+  
+            /// <summary>
+            /// Voltage高电平设置  SOUR{0}:VOLT:HIGH {1}
+            /// </summary>
+            /// <param name="cnum">通道号 1|2</param>
+            /// <param name="value">电压数值 单位（V）</param>
+            /// <returns></returns>
+            public virtual string Voltage高电平设置(int cnum = 1,string value="5")
+            {
+                return string.Format("SOUR{0}:VOLT:HIGH {1}", cnum, value);
+            }
+
+            /// <summary>
+            /// Voltage低电平设置 SOUR{0}:VOLT:LOW {1}
+            /// </summary>
+            /// <param name="cnum">通道号 1|2</param>
+            /// <param name="value">电压数值 单位（V）</param>
+            /// <returns></returns>
+            public virtual string Voltage低电平设置(int cnum = 1, string value = "0")
+            {
+                return string.Format("SOUR{0}:VOLT:LOW {1}", cnum, value);
+            }
+
+            
         }
     }
 

@@ -1,26 +1,33 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace InstrLibrary.InstrDriver
 {
     /// <summary>
     /// 仪表-基类
     /// </summary>
+    public delegate void ChildThreadExceptionHandler(string message);
+    
     public class InstrBase
-    {        
+    {
+        public event ChildThreadExceptionHandler ChildThreadException;
         public int _ResourceManager =0;
         public int _ViError = 0;
         public int _Session = 0;
 
         public string _InstrAddr { get; set; }
-
+        public string _InstrNick { get;set;}="";
         public string InstrIDN { get;set;}
         
         public InstrBase(string address)
         {
             _InstrAddr = address;
         }
-
+        protected virtual void OnchildThreadException(string message)
+        {
+            ChildThreadException?.Invoke(message);
+        }
         /// <summary>
         /// 打印
         /// </summary>
@@ -29,7 +36,6 @@ namespace InstrLibrary.InstrDriver
         {
             Console.WriteLine(command);
         }
-
         /// <summary>
         /// 建立连接
         /// </summary>
@@ -37,12 +43,12 @@ namespace InstrLibrary.InstrDriver
         {
             _ViError = AgVisa32.viOpenDefaultRM(out _ResourceManager);
             if (_ViError != 0)
-                throw new Exception("error:" + _InstrAddr);
+                OnchildThreadException("error:" +_InstrNick+ _InstrAddr);
 
             _ViError = AgVisa32.viOpen(_ResourceManager, _InstrAddr,
-                AgVisa32.VI_NO_LOCK, AgVisa32.VI_TMO_IMMEDIATE, out _Session);
+                    AgVisa32.VI_NO_LOCK, AgVisa32.VI_TMO_IMMEDIATE, out _Session);
             if (_ViError != 0)
-                throw new Exception("error:" + _InstrAddr);
+                OnchildThreadException("error:" + _InstrNick + _InstrAddr);
         }
 
         /// <summary>
@@ -62,7 +68,7 @@ namespace InstrLibrary.InstrDriver
         {
             _ViError = AgVisa32.viPrintf(_Session, command + "\n");
             if (_ViError != 0)
-                throw new Exception("仪表连接错误！");
+                OnchildThreadException("error:" + _InstrNick + _InstrAddr);   
         }
 
         /// <summary>
@@ -75,7 +81,7 @@ namespace InstrLibrary.InstrDriver
             {
                 _ViError = AgVisa32.viPrintf(_Session, commands[i] + "\n");
                 if (_ViError != 0)
-                    throw new Exception("仪表连接错误！");
+                    OnchildThreadException("error:" + _InstrNick + _InstrAddr);
             }
         }
 
@@ -86,16 +92,29 @@ namespace InstrLibrary.InstrDriver
         /// <returns></returns>
         public virtual string VisaRead(string command)
         {
-            _ViError = AgVisa32.viPrintf(_Session, command +"\r\n");
+
+            _ViError = AgVisa32.viPrintf(_Session, command + "\r\n");
+            if (_ViError != 0)
+                OnchildThreadException("error:" + _InstrNick + _InstrAddr);
+
             string res = "";
-            Thread.Sleep(100);
+            Thread.Sleep(100);       
+            try
+            {
+                AgVisa32.viRead(_Session, out res, 15);
+                //string[] resa = res.Split(',');
+                //res = resa[0];
+                double dtmp = double.Parse(res);
+                return dtmp.ToString("f2");
+            }
+            catch (Exception)
+            {
+                OnchildThreadException("error:" + _InstrNick + "：数据采集失败");
+                return "0";
+            }
 
-            AgVisa32.viRead(_Session, out res, 100);
 
-            string[] resa = res.Split(',');
-            res = resa[0];
-            double dtmp = double.Parse(res);
-            return dtmp.ToString("f2");
+
         }
 
         /// <summary>
@@ -108,15 +127,25 @@ namespace InstrLibrary.InstrDriver
             double dtmp;
 
             _ViError = AgVisa32.viPrintf(_Session, command + "\n");
+            if (_ViError != 0)
+                OnchildThreadException("error:" + _InstrNick + _InstrAddr);
+            string res = "";     
+            try
+            {
+                AgVisa32.viRead(_Session, out res, 15);
+                //string[] resa = res.Split(',');
+                //res = resa[0];
+   
+                dtmp = double.Parse(res);
 
-            string res = "";
-            AgVisa32.viRead(_Session, out res, 100);
+                return dtmp;
+            }
+            catch (Exception)
+            {
+                OnchildThreadException("error:" + _InstrNick + "：数据采集失败");
+                return 0;
+            }
 
-            string[] resa = res.Split(',');
-            res = resa[0];
-            dtmp = double.Parse(res);
-
-            return dtmp;
         }
 
         /// <summary>
@@ -129,11 +158,11 @@ namespace InstrLibrary.InstrDriver
             double[] dtmp;
 
             _ViError = AgVisa32.viPrintf(_Session, command + "\n");
-
+            if (_ViError != 0)
+                OnchildThreadException("error:" + _InstrNick + _InstrAddr);
 
             string res = "";
-
-            AgVisa32.viRead(_Session, out res, 1000000);
+            AgVisa32.viRead(_Session, out res, 15);
 
             string[] tmp = res.Split(',');
             dtmp = new double[tmp.Length];

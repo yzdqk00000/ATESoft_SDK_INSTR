@@ -83,7 +83,7 @@ namespace InstrLibrary.InstrObect
             /// <returns></returns>
             public virtual string 设置起始频率(string value)
             {
-                return string.Format("SENS:FREQ:STAR {1}MHz", value);
+                return string.Format("SENS:FREQ:STAR {0}MHz", value);
             }
 
             /// <summary>
@@ -93,7 +93,7 @@ namespace InstrLibrary.InstrObect
             /// <returns></returns>
             public virtual string 设置终止频率(string value)
             {
-                return string.Format("SENS:FREQ:STOP {1}MHz", value);
+                return string.Format("SENS:FREQ:STOP {0}MHz", value);
             }
         }
 

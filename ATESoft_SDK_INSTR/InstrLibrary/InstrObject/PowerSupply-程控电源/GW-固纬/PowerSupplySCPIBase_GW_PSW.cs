@@ -35,7 +35,7 @@ namespace InstrLibrary.InstrObect
             /// VOLT
             /// </summary>
             /// <returns></returns>
-            public virtual string 设置电压值(double value)
+            public virtual string 设置电压值(string value)
             {
                 return string.Format("VOLT " + value);
             }
@@ -44,7 +44,7 @@ namespace InstrLibrary.InstrObect
             /// CURR
             /// </summary>
             /// <returns></returns>
-            public virtual string 设置电流值(double value)
+            public virtual string 设置电流值(string value)
             {
                 return string.Format("CURR " +value);
             }
@@ -56,7 +56,7 @@ namespace InstrLibrary.InstrObect
             /// </summary>
             /// <param name="state"></param>
             /// <returns></returns>
-            public virtual string 输出开关(int state=1)
+            public virtual string 输出开关(string state = "OFF")
             {
                 return string.Format("OUTP " +state);
             }
