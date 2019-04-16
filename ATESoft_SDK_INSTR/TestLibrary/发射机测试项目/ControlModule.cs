@@ -20,11 +20,11 @@ namespace TestSystemOfSender
         }
         public enum BITE结果类型
         {
-            正常 = 0x00,
-            电源故障 = 0x01,
-            功率检测故障 = 0x02,
-            电源功率均故障 = 0x03,
-            断开连接,
+            正常 = 0x03,
+            电源故障 = 0x02,
+            功率检测故障 = 0x01,
+            电源功率均故障 = 0x00,
+            断开连接 = 0x04,
         }
         public enum 仪表选择
         {

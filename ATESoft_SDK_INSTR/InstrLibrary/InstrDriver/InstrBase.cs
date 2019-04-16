@@ -162,22 +162,17 @@ namespace InstrLibrary.InstrDriver
                 OnchildThreadException("error:" + _InstrNick + _InstrAddr);
 
             string res = "";
-            AgVisa32.viRead(_Session, out res, 15);
+            AgVisa32.viRead(_Session, out res, 8020);
 
             string[] tmp = res.Split(',');
             dtmp = new double[tmp.Length];
 
-            try
-            {
+ 
                 for (int i = 0; i < tmp.Length; i++)
                 {
                     dtmp[i] = double.Parse(tmp[i]);
                 }
-            }
-            catch
-            {
-                Console.WriteLine();
-            }
+
 
             return dtmp;
         }

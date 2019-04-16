@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TestSystemOfSender.TestLibrary.发射机测试项目
@@ -67,9 +68,17 @@ namespace TestSystemOfSender.TestLibrary.发射机测试项目
             //L0信号源补偿 = Convert.ToDecimal(Modules.ucJiaoZhun.CalibrationObjectList.Find(m => m.FileName == "XHY.prn").CalibrationData[LX频率校准映射[freq]]);
             L1功率计补偿 = Convert.ToDecimal(Modules.ucJiaoZhun.CalibrationObjectList.Find(m=>m.FileName == "GLJ.prn").CalibrationData[LX频率校准映射[freq]]);
             L2频谱仪补偿 = Convert.ToDecimal(Modules.ucJiaoZhun.CalibrationObjectList.Find(m => m.FileName == "PPY.prn").CalibrationData[LX频率校准映射[freq]]);
+            //if (freq != 频率工作范围.F13 && freq != 频率工作范围.F14)
+            //{
+            //    _SignalGener.VisaWrite(_SCPI_SignalGenerator.SOURCE_SYSTEM.设置功率("2.5dbm"));
+            //}
+            //else
+            //{
+            //    _SignalGener.VisaWrite(_SCPI_SignalGenerator.SOURCE_SYSTEM.设置功率("2dbm"));
+            //}
             //_SignalGener.VisaWrite(_SCPI_SignalGenerator.SOURCE_SYSTEM.设置功率Offsets(L0信号源补偿.ToString()));
             //_SignalGener.VisaWrite(_SCPI_SignalGenerator.SOURCE_SYSTEM.设置频率(string.Format("{0}MHz", (int)freq)));
-            //_PowerMeter.VisaWrite(_SCPI_PowerMeter.SENSE_SYSTEM.设置增益DB补偿Offset(1, (-L1功率计补偿).ToString()));
+            _PowerMeter.VisaWrite(_SCPI_PowerMeter.SENSE_SYSTEM.设置增益DB补偿Offset(1, (-L1功率计补偿).ToString()));
         }
 
         public void 脉冲源基础设置(脉宽类型 pulseWidth,decimal dutyRadio)
@@ -78,18 +87,27 @@ namespace TestSystemOfSender.TestLibrary.发射机测试项目
             if (pulseWidth == 脉宽类型._60μs)
             {
                 _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.SOURCE_SYSTEM.Pulse周期设置(1, (60.7m / dutyRadio).ToString() + "us"));
-                _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.SOURCE_SYSTEM.Pulse周期设置(2, (60m / dutyRadio).ToString() + "us"));
                 _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.SOURCE_SYSTEM.Pulse脉宽设置(1, "60.7us"));
+                _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.SOURCE_SYSTEM.Pulse周期设置(2, (60.7m / dutyRadio).ToString() + "us"));
                 _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.SOURCE_SYSTEM.Pulse脉宽设置(2, "60us"));
             }
             else
             {
                 _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.SOURCE_SYSTEM.Pulse周期设置(1, (5.7m / dutyRadio).ToString() + "us"));
-                _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.SOURCE_SYSTEM.Pulse周期设置(2, (5m / dutyRadio).ToString() + "us"));
                 _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.SOURCE_SYSTEM.Pulse脉宽设置(1, "5.7us"));
-                _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.SOURCE_SYSTEM.Pulse脉宽设置(2, "5us"));
-           
+                _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.SOURCE_SYSTEM.Pulse周期设置(2, (5.7m / dutyRadio).ToString() + "us"));
+                _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.SOURCE_SYSTEM.Pulse脉宽设置(2, "5us")); 
             }
+       
+            _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.SOURCE_SYSTEM.Burst设置模式(2, "INF"));
+            _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.SOURCE_SYSTEM.Burst设置内外触发模式(2, "EXT"));
+            _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.SOURCE_SYSTEM.Burst设置TDelay(2, "0.0000005"));
+
+            _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.OUTPUT_SYSTEM.开or关输出(1, "ON"));
+            _WaveFormGenerator.VisaWrite(_SCPI_WaveForm.OUTPUT_SYSTEM.开or关输出(2, "ON"));
+            Thread.Sleep(1000);
+            _SignalGener.VisaWrite(_SCPI_SignalGenerator.OUTPUT_SYSTEM.开or关输出("ON"));
+            _SignalGener.VisaWrite(_SCPI_SignalGenerator.OUTPUT_SYSTEM.开or关调制MOD("ON"));
         }
 
     }

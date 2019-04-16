@@ -30,18 +30,35 @@ namespace TestSystemOfSender.TestLibrary.发射机测试项目
         public void 该测试前设置(频率工作范围 freq, 脉宽类型 pulseWidth,decimal dutyRadio)
         {
             脉冲源基础设置(pulseWidth, dutyRadio);
-            补偿设置(freq);
-
+            _PowerMeter.VisaWrite(_SCPI_PowerMeter.SYSTEM_SYSTEM.PRESET模式("RADar"));
+            Thread.Sleep(2800);
             _ControlModule.SwitchControl(ControlModule.仪表选择.功率计);
             _PowerMeter.VisaWrite(_SCPI_PowerMeter.CALC_SYSTEM.设置MeasureType(1, "1", PowerMeterSCPIBase_Keysight.CALCulate_System.MeasureType.PTAV));
-              
-            Thread.Sleep(20);//没有延时会读不到值
+            _PowerMeter.VisaWrite(_SCPI_PowerMeter.UNIT_SYSTEM.设置UNIT(2, "DBM"));
+            if (pulseWidth == 脉宽类型._60μs)
+            {
+                _PowerMeter.VisaWrite(_SCPI_PowerMeter.SENSE_SYSTEM.设置GateSetup_MARK1_TIME(1, 1, "6us"));
+                _PowerMeter.VisaWrite(_SCPI_PowerMeter.SENSE_SYSTEM.设置GateSetup_MARK1到MARK2_TIME(1, 1, "48us"));
+            }
+            else
+            {
+                _PowerMeter.VisaWrite(_SCPI_PowerMeter.SENSE_SYSTEM.设置GateSetup_MARK1_TIME(1, 1, "0.5us"));
+                _PowerMeter.VisaWrite(_SCPI_PowerMeter.SENSE_SYSTEM.设置GateSetup_MARK1到MARK2_TIME(1, 1, "4us"));
+            }
+            Thread.Sleep(2000);
         }
         
-        public double 功率计读取顶降值()
-        {         
-            //信号源设置输出频率(频率工作范围.F01);
-            return _PowerMeter.VisaRead_double(_SCPI_PowerMeter.MEASUREMENT_SYSTEM.读取Fetch数值());            
+        public double 功率计读取顶降值(频率工作范围 freq)
+        {
+            补偿设置(freq);
+            _SignalGener.VisaWrite(_SCPI_SignalGenerator.SOURCE_SYSTEM.设置频率((int)freq + "MHz"));
+            _PowerMeter.VisaWrite(_SCPI_PowerMeter.SENSE_SYSTEM.设置TraceSetup_AutoScale());
+
+            Thread.Sleep(2500);//等待AutoScale时间
+            double _P1 = Convert.ToDouble(_PowerMeter.VisaRead_double(_SCPI_PowerMeter.SENSE_SYSTEM.读取GateSetup_MARK_POW(1, 1, 1)));
+            Thread.Sleep(200);
+            double _P2 = Convert.ToDouble(_PowerMeter.VisaRead_double(_SCPI_PowerMeter.SENSE_SYSTEM.读取GateSetup_MARK_POW(1, 1, 2)));
+            return Math.Round(_P1-_P2,2);            
         }
     }
 }

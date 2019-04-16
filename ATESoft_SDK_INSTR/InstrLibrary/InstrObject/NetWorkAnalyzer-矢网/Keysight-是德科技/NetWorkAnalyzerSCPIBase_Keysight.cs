@@ -98,9 +98,19 @@ namespace InstrLibrary.InstrObect
             ///Use FORMat:DATA to change the data type(<REAL,32>, <REAL,64> or<ASCii,0>).
             ///Use FORMat:BORDer to change the byte order.Use “NORMal” when transferring a binary block from LabView or Vee.For other programming languages, you may need to "SWAP" the byte order.
             /// <returns></returns>
-            public virtual string 读取曲线点的数据(int cnum=1,string style="FDATA")
+            public virtual string 读取所有点的Y值(int cnum=1,string style="FDATA")
             {
                 return string.Format("CALC{0}:DATA? {1}",cnum,style);
+            }
+
+            /// <summary>
+            /// 读取所有点的X值|如果有问题就看SENS的！
+            /// </summary>
+            /// <param name="cnum"></param>
+            /// <returns></returns>
+            public virtual string 读取所有点的X值(int cnum = 1)
+            {
+                return string.Format("CALC{0}:X?", cnum);
             }
         }
 
@@ -173,6 +183,16 @@ namespace InstrLibrary.InstrObect
             }
 
             /// <summary>
+            /// 设置中心频率|SENS:FREQ:CENT {0}
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns></returns>
+            public virtual string 设置中心频率(string value = "50MHz")
+            {
+                return string.Format("SENS:FREQ:CENT {0}", value);
+            }
+
+            /// <summary>
             /// 设置终止频率|SENS:FREQ:STOP {0}
             /// </summary>
             /// <param name="value"></param>
@@ -180,6 +200,27 @@ namespace InstrLibrary.InstrObect
             public virtual string 设置终止频率(string value)
             {
                 return string.Format("SENS:FREQ:STOP {0}", value);
+            }
+
+            /// <summary>
+            /// 设置SweepType
+            /// LINear | LOGarithmic | POWer | CW | SEGMent | PHASe
+            /// </summary>
+            /// <param name="type"></param>
+            /// <returns></returns>
+            public virtual string 设置SweepType(string type="CW")
+            {
+                return string.Format("SENS:SWE:TYPE {0}", type);
+            }
+
+            /// <summary>
+            /// 读取所有点的X值
+            /// </summary>
+            /// <param name="cnum"></param>
+            /// <returns></returns>
+            public virtual string 读取所有点的X值(int cnum = 1)
+            {
+                return string.Format("SENS{0}:X?", cnum);
             }
         }
     }

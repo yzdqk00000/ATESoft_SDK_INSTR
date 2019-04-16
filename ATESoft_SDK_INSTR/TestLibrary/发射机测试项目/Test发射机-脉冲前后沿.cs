@@ -30,14 +30,18 @@ namespace TestSystemOfSender.TestLibrary.发射机测试项目
             return 100;
         }
 
-        public double 功率计读取脉冲前沿数值()
-        {        
-            Thread.Sleep(50);
+        public double 功率计读取脉冲前沿数值(频率工作范围 freq)
+        {
+            _SignalGener.VisaWrite(_SCPI_SignalGenerator.SOURCE_SYSTEM.设置频率((int)freq + "MHz"));
+            _PowerMeter.VisaWrite(_SCPI_PowerMeter.TRIGGER_SYSTEM.设置Slope("POS"));
+            Thread.Sleep(1000);
             return Math.Round(_PowerMeter.VisaRead_double(_SCPI_PowerMeter.SENSE_SYSTEM.读取脉冲前沿()) * 1000000000, 2);
         }
-        public double 功率计读取脉冲后沿数值()
+        public double 功率计读取脉冲后沿数值(频率工作范围 freq)
         {
-            Thread.Sleep(50);
+            _SignalGener.VisaWrite(_SCPI_SignalGenerator.SOURCE_SYSTEM.设置频率((int)freq + "MHz"));
+            _PowerMeter.VisaWrite(_SCPI_PowerMeter.TRIGGER_SYSTEM.设置Slope("NEG"));
+            Thread.Sleep(1000);
             return Math.Round(_PowerMeter.VisaRead_double(_SCPI_PowerMeter.SENSE_SYSTEM.读取脉冲后沿()) * 1000000000, 2);
         }
 
@@ -47,8 +51,18 @@ namespace TestSystemOfSender.TestLibrary.发射机测试项目
             补偿设置(freq);
             脉冲源基础设置(pulseWidth, dutyRadio);
             _ControlModule.SwitchControl(ControlModule.仪表选择.功率计);
-            _PowerMeter.VisaWrite(_SCPI_PowerMeter.CALC_SYSTEM.设置MeasureType(1, "1", PowerMeterSCPIBase_Keysight.CALCulate_System.MeasureType.AVER));    
-  
+            _PowerMeter.VisaWrite(_SCPI_PowerMeter.CALC_SYSTEM.设置MeasureType(1, "1", PowerMeterSCPIBase_Keysight.CALCulate_System.MeasureType.AVER));
+            if (pulseWidth == 脉宽类型._60μs)
+            {
+                _PowerMeter.VisaWrite(_SCPI_PowerMeter.SENSE_SYSTEM.设置TraceSetup_X_Scale(1, "0.000008"));
+                _PowerMeter.VisaWrite(_SCPI_PowerMeter.SENSE_SYSTEM.设置TraceSetup_X_Start(1, "-0.000005"));
+            }
+            else
+            {          
+                _PowerMeter.VisaWrite(_SCPI_PowerMeter.SENSE_SYSTEM.设置TraceSetup_X_Scale(1, "0.0000006"));
+                _PowerMeter.VisaWrite(_SCPI_PowerMeter.SENSE_SYSTEM.设置TraceSetup_X_Start(1, "-0.000001"));
+            }
+            Thread.Sleep(3000);
         }
     }
 }

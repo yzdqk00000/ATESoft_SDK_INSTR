@@ -56,8 +56,8 @@ namespace TestSystemOfSender.TestLibrary.发射机测试项目
                 for (int channelIndex = 0; channelIndex < 3; channelIndex++)
                 {
                     _PowerSupply_PPT.VisaWrite(_SCPI_PPT.SOURCE_SYSTEM.选择通道(channelIndex + 1));
-                    _DataOfPPT.ChannelOfPowerList[channelIndex].V = Convert.ToDecimal(_PowerSupply_PPT.VisaRead_double(_SCPI_PPT.SOURCE_SYSTEM.读取电压值()));
-                    _DataOfPPT.ChannelOfPowerList[channelIndex].A = Convert.ToDecimal(_PowerSupply_PPT.VisaRead_double(_SCPI_PPT.SOURCE_SYSTEM.读取电流值()));
+                    _DataOfPPT.ChannelOfPowerList[channelIndex].V = Convert.ToDecimal(_PowerSupply_PPT.VisaRead_double(_SCPI_PPT.SOURCE_SYSTEM.读取测量电压值()));
+                    _DataOfPPT.ChannelOfPowerList[channelIndex].A = Convert.ToDecimal(_PowerSupply_PPT.VisaRead_double(_SCPI_PPT.SOURCE_SYSTEM.读取测量电流值()));
                 }
                 Thread.Sleep(SpanOfRead);
             }

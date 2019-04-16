@@ -100,7 +100,138 @@ namespace InstrLibrary.InstrObect
             public virtual string 开or关增益DB补偿Offset(int channel = 1, string state = "ON")
             {
                 return string.Format("SENS{0}:CORR:GAIN2:STAT {1}", channel, state);
-            }      
+            }
+
+            /// <summary>
+            /// AutoScale，在屏幕的Channel，TraceSetup里
+            /// </summary>
+            /// <param name="channel">通道号</param>
+            /// <returns></returns>
+            public virtual string 设置TraceSetup_AutoScale(int channel = 1)
+            {
+                return string.Format("SENS{0}:TRAC:AUT", channel);
+            }
+
+            /// <summary>
+            /// 设置X-start
+            /// </summary>
+            /// <param name="channel">通道号</param>
+            /// <returns></returns>
+            public virtual string 设置TraceSetup_X_Start(int channel = 1,string time="-250ns")
+            {
+                return string.Format("SENS{0}:TRAC:OFFS:TIME {1}", channel,time);
+            }
+
+            /// <summary>
+            /// 读取X_Start
+            /// </summary>
+            /// <param name="channel">通道号</param>
+            /// <returns></returns>
+            public virtual string 读取TraceSetup_X_Start(int channel = 1)
+            {
+                return string.Format("SENS{0}:TRAC:OFFS:TIME?", channel);
+            }
+
+            /// <summary>
+            /// 设置TraceSetup_X_Scale 默认150ns
+            /// </summary>
+            /// <param name="channel">通道号</param>
+            /// <returns></returns>
+            public virtual string 设置TraceSetup_X_Scale(int channel = 1,string time= "0.00000015")
+            {
+                return string.Format("SENS{0}:TRAC:X:SCAL:PDIV {1}", channel,time);
+            }
+
+            /// <summary>
+            /// 设置TraceSetup_Y_Scale 根据显示单位,默认DB
+            /// </summary>
+            /// <param name="channel"></param>
+            /// <param name="pow"></param>
+            /// <returns></returns>
+            public virtual string 设置TraceSetup_Y_Scale(int channel = 1, string pow = "7")
+            {
+                return string.Format("SENS{0}:TRAC:Y:SCAL:PDIV {1}", channel,pow);
+            }
+
+            /// <summary>
+            /// 设置TraceSetup_Y_Max，根据单位，默认db,设置这个时，SCALE会发生同比例变化
+            /// </summary>
+            /// <param name="channel"></param>
+            /// <param name="pow"></param>
+            /// <returns></returns>
+            public virtual string 设置TraceSetup_Y_Max(int channel = 1, string pow = "20")
+            {
+                return string.Format("SENS{0}:TRAC:LIM:UPP {1}", channel, pow);
+            }
+
+            /// <summary>
+            /// 设置TraceSetup_Unit显示单位
+            /// </summary>
+            /// <param name="channel"></param>
+            /// <param name="unit">两种单位 DBM | W</param>
+            /// <returns></returns>
+            public virtual string 设置TraceSetup_Unit(int channel = 1, string unit = "DBM")
+            {
+                return string.Format("SENS{0}:TRAC:UNIT {1}", channel, unit);
+            }
+
+            /// <summary>
+            /// 读取通道1的GATE1的MARK1的值
+            /// </summary>
+            /// <param name="channel">通道号</param>
+            /// <param name="gatenum">GATE号</param>
+            /// <param name="mknum">MARK号</param>
+            /// <returns></returns>
+            public virtual string 读取GateSetup_MARK_POW(int channel = 1, int gatenum = 1,int mknum =1)
+            {
+                return string.Format("SENS{0}:SWE{1}:MARK{2}:POW?", channel, gatenum,mknum);
+            }
+
+            /// <summary>
+            /// 读取通道1GATE1MARK1的时间
+            /// </summary>
+            /// <param name="channel">通道号</param>
+            /// <param name="gatenum">GATE号</param>
+            /// <returns></returns>
+            public virtual string 读取GateSetup_MARK1_TIME(int channel = 1, int gatenum = 1)
+            {
+                return string.Format("SENS{0}:SWE{1}:OFFS:TIME?", channel, gatenum);
+            }
+
+            /// <summary>
+            /// .将MARK1设置到5ns位置
+            /// </summary>
+            /// <param name="channel">通道号</param>
+            /// <param name="gatenum">GATE号</param>
+            /// <param name="time">时间</param>
+            /// <returns></returns>
+            public virtual string 设置GateSetup_MARK1_TIME(int channel = 1, int gatenum = 1,string time="5ns")
+            {
+                return string.Format("SENS{0}:SWE{1}:OFFS:TIME {2}", channel, gatenum,time);
+            }
+
+            /// <summary>
+            /// 读取GateSetup_MARK1到MARK2_TIME 
+            /// </summary>
+            /// <param name="channel">通道号</param>
+            /// <param name="gatenum">GATE号</param>
+            /// <returns></returns>
+            public virtual string 读取GateSetup_MARK1到MARK2_TIME(int channel = 1, int gatenum = 1)
+            {
+                return string.Format("SENS{0}:SWE{1}:TIME?", channel, gatenum);
+            }
+
+            /// <summary>
+            /// 设置GateSetup_MARK1到MARK2_TIME 
+            /// </summary>
+            /// <param name="channel">通道号</param>
+            /// <param name="gatenum">GATE号</param>
+            /// <param name="time">MARK与MARK2间隔的时间</param>
+            /// <returns></returns>
+            public virtual string 设置GateSetup_MARK1到MARK2_TIME(int channel = 1, int gatenum = 1,string time="900ns")
+            {
+                return string.Format("SENS{0}:SWE{1}:TIME {2}", channel, gatenum,time);
+            }
         }
     }
 

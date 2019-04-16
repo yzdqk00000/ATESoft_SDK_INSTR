@@ -87,6 +87,16 @@ namespace InstrLibrary.InstrObect
             {
                 return string.Format("SWE:TIME {0}", time);
             }
+
+            /// <summary>
+            /// 设置衰减量
+            /// </summary>
+            /// <param name="att"></param>
+            /// <returns></returns>
+            public virtual string 设置Attenuation衰减(string att = "0DBM")
+            {
+                return string.Format("SENS:POWer:ATTenuation {0}",att);
+            }
         }
 
         public class SYSTem_System
