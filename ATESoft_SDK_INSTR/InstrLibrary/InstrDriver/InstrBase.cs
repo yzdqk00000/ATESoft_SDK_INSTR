@@ -110,11 +110,29 @@ namespace InstrLibrary.InstrDriver
             catch (Exception)
             {
                 OnchildThreadException("error:" + _InstrNick + "：数据采集失败");
-                return "0";
+                return "";
             }
+        }
 
+        public virtual string VisaOriginRead(string command)
+        {
 
+            _ViError = AgVisa32.viPrintf(_Session, command + "\r\n");
+            if (_ViError != 0)
+                OnchildThreadException("error:" + _InstrNick + _InstrAddr);
 
+            string res = "";
+            Thread.Sleep(100);
+            try
+            {
+                AgVisa32.viRead(_Session, out res, 100000);
+                return res;
+            }
+            catch (Exception)
+            {
+                OnchildThreadException("error:" + _InstrNick + "：数据采集失败");
+                return "";
+            }
         }
 
         /// <summary>
